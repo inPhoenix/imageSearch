@@ -1,0 +1,24 @@
+$pagination-color: #2f3a90;
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-item {
+  display: flex;
+  border: 1px solid $pagination-color;
+  color: $pagination-color;
+  border-right: none;
+  cursor: pointer;
+  justify-content: center;
+  padding: 10px;
+  min-width: 15px;
+  &:hover {
+    background-color: lightgoldenrodyellow;
+  }
+  &:last-child {
+    border-right: 1px solid $pagination-color;
+  }
+}

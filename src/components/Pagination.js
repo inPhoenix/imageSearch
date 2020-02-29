@@ -9,11 +9,11 @@ const Pagination = ({ imagesPerPage, totalPosts, paginate }) => {
 
     return (
         <nav>
-            <ul>
+            <ul className='page-container'>
                 {pageNumbers.map(number => (
                     <li
                         key={number}
-                        style={{ display: 'flex', padding: '10px', }}
+                        className="page-item"
                         onClick={() => paginate(number)}
                     >
                         <div>{number}</div>
