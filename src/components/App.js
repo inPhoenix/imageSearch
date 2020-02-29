@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+const App = (images) => {
+  console.log(images);
+  return <div className="App">Hello World</div>;
+};
 
-function App() {
-  return (
-    <div className="App">
-      Hello World
-    </div>
-  );
-}
-
-export default App;
+const mapStateToProps = state => {
+  return {
+    images: state
+  };
+};
+export default connect(mapStateToProps)(App);
