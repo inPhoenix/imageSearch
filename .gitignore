@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# Secret
+./src/secrets.js
+
 # IDEs and editors
 /.idea
 .project
