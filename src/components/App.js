@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import { connect } from "react-redux";
-import { searchImages } from "../actions";
+import { searchImages, selectImage } from "../actions";
 import Pagination from "./Pagination";
 import Images from "./Images";
 
-const App = ({ images, searchImages }) => {
+const App = ({ images, searchImages, selectImage, selectedImage }) => {
   useEffect(() => {
     searchImages("landscapes");
   }, [searchImages]);
@@ -25,6 +25,11 @@ const App = ({ images, searchImages }) => {
     searchImages(event.target.value);
   };
 
+  const handleImageSelect = photo => {
+    selectImage(photo);
+  };
+
+  console.log("%c selectedImage", "background: red", selectedImage);
   return (
     <div className="wrapper">
       <Pagination
@@ -41,14 +46,17 @@ const App = ({ images, searchImages }) => {
           placeholder="photos"
         />
       </div>
-      <div className="item">{images && <Images images={currentImage} />}</div>
+      <div className="item">
+        {images && (
+          <Images images={currentImage} onImageSelect={handleImageSelect} />
+        )}
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    images: state.images.data.photo
-  };
-};
-export default connect(mapStateToProps, { searchImages })(App);
+const mapStateToProps = state => ({
+  images: state.images.data.photo
+});
+
+export default connect(mapStateToProps, { searchImages, selectImage })(App);

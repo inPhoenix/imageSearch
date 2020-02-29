@@ -1,4 +1,4 @@
-import { FETCH_IMAGES } from "./types";
+import { FETCH_IMAGES, IMAGE_SELECTED } from "./types";
 import { API_KEY } from "../secrets";
 import flickr from "../apis/flickr";
 
@@ -11,3 +11,8 @@ export const searchImages = searchTerm => async dispatch => {
     console.error(e);
   }
 };
+
+export const selectImage = image => ({
+  type: IMAGE_SELECTED,
+  payload: image
+});
