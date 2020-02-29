@@ -8,7 +8,8 @@ const Modal = ({ onDismiss, children }) => {
       event.keyCode === 27 && onDismiss();
     };
     window.addEventListener("keydown", handleEsc);
-  }, []);
+  }, [onDismiss]);
+
   return ReactDOM.createPortal(
     <div className="portal" onClick={onDismiss}>
       <div className="close-modal">Press Esc To close</div>
