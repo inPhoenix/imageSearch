@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { searchImages } from "../actions";
 import Pagination from "./Pagination";
 
 const App = ({ images, searchImages }) => {
-  const [value, setValue] = useState("");
 
+  useEffect(() => {
+    searchImages("landscapes");
+  }, []);
+
+  const [value, setValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [imagesPerPage] = useState(20);
 
