@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { connect } from "react-redux";
 import { searchImages } from "../actions";
 import Pagination from "./Pagination";
@@ -7,7 +8,7 @@ import Images from "./Images";
 const App = ({ images, searchImages }) => {
   useEffect(() => {
     searchImages("landscapes");
-  }, []);
+  }, [searchImages]);
 
   const [value, setValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,21 +23,6 @@ const App = ({ images, searchImages }) => {
   const handleChange = event => {
     setValue(event.target.value);
     searchImages(event.target.value);
-  };
-
-  const renderImages = images => {
-    return images.map(photo => {
-      const { farm, server, secret, id } = photo;
-      return (
-        <div key={photo.id}>
-          <img
-            src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
-            key={id}
-            className="images"
-          />
-        </div>
-      );
-    });
   };
 
   return (
