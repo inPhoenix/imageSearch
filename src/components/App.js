@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { searchImages } from "../actions";
 import Pagination from "./Pagination";
+import Images from "./Images";
 
 const App = ({ images, searchImages }) => {
   useEffect(() => {
@@ -14,7 +15,8 @@ const App = ({ images, searchImages }) => {
 
   const indexOfLastImage = currentPage * imagesPerPage;
   const indexOfFirstImage = indexOfLastImage - imagesPerPage;
-  const currentImage = images && images.slice(indexOfFirstImage, indexOfLastImage);
+  const currentImage =
+    images && images.slice(indexOfFirstImage, indexOfLastImage);
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   const handleChange = event => {
@@ -53,9 +55,7 @@ const App = ({ images, searchImages }) => {
           placeholder="photos"
         />
       </div>
-      <div className="item">
-      {images && renderImages(currentImage)}
-      </div>
+      <div className="item">{images && <Images images={currentImage} />}</div>
     </div>
   );
 };
