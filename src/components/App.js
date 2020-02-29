@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { searchImages } from "../actions";
+import Pagination from "./Pagination";
 
 const App = ({ images, searchImages }) => {
   const [value, setValue] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [imagesPerPage] = useState(20);
+
+  const indexOfLastImage = currentPage * imagesPerPage;
+  const indexOfFirstImage = indexOfLastImage - imagesPerPage;
+  const currentImage = images.slice(indexOfFirstImage, indexOfLastImage);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   const handleChange = event => {
     setValue(event.target.value);
@@ -27,13 +36,18 @@ const App = ({ images, searchImages }) => {
 
   return (
     <div className="input-container">
+      <Pagination
+        imagesPerPage={imagesPerPage}
+        totalPosts={images.length}
+        paginate={paginate}
+      />
       <input
         value={value}
         onChange={handleChange}
         className="input"
         placeholder="photos"
       />
-      {images && renderImages(images)}
+      {images && renderImages(currentImage)}
     </div>
   );
 };
