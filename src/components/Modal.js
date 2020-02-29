@@ -4,7 +4,9 @@ import { func, node } from "prop-types";
 
 const Modal = ({ onDismiss, children }) => {
   return ReactDOM.createPortal(
-    <div onClick={onDismiss}>{children}</div>,
+    <div className="portal" onClick={onDismiss}>
+      {children}
+    </div>,
     document.querySelector("#portal")
   );
 };

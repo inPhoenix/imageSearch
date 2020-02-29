@@ -41,6 +41,7 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
     return (
       <Modal onDismiss={closeModal}>
         <img
+          alt="selected"
           src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
         />
       </Modal>
