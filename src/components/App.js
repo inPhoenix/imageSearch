@@ -14,7 +14,7 @@ const App = ({ images, searchImages }) => {
 
   const indexOfLastImage = currentPage * imagesPerPage;
   const indexOfFirstImage = indexOfLastImage - imagesPerPage;
-  const currentImage = images.slice(indexOfFirstImage, indexOfLastImage);
+  const currentImage = images && images.slice(indexOfFirstImage, indexOfLastImage);
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   const handleChange = event => {
@@ -41,7 +41,7 @@ const App = ({ images, searchImages }) => {
     <div className="wrapper">
       <Pagination
         imagesPerPage={imagesPerPage}
-        totalPosts={images.length}
+        totalPosts={images && images.length}
         paginate={paginate}
       />
 
