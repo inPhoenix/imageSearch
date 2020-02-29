@@ -4,7 +4,6 @@ import { searchImages } from "../actions";
 import Pagination from "./Pagination";
 
 const App = ({ images, searchImages }) => {
-
   useEffect(() => {
     searchImages("landscapes");
   }, []);
@@ -31,7 +30,7 @@ const App = ({ images, searchImages }) => {
           <img
             src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
             key={id}
-            className="image"
+            className="images"
           />
         </div>
       );
@@ -39,19 +38,24 @@ const App = ({ images, searchImages }) => {
   };
 
   return (
-    <div className="input-container">
+    <div className="wrapper">
       <Pagination
         imagesPerPage={imagesPerPage}
         totalPosts={images.length}
         paginate={paginate}
       />
-      <input
-        value={value}
-        onChange={handleChange}
-        className="input"
-        placeholder="photos"
-      />
+
+      <div className="input-container">
+        <input
+          value={value}
+          onChange={handleChange}
+          className="input"
+          placeholder="photos"
+        />
+      </div>
+      <div className="item">
       {images && renderImages(currentImage)}
+      </div>
     </div>
   );
 };

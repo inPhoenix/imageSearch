@@ -1,0 +1,12 @@
+.images {
+  width: 10vw;
+  height: 10vh;
+}
+
+.item {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(5, 150px);
+  justify-content: center;
+  gap: 10px;
+}
