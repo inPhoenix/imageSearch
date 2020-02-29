@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { searchImages, selectImage } from "../actions";
 import Pagination from "./Pagination";
 import Images from "./Images";
+import Modal from "./Modal";
 
 const App = ({ images, searchImages, selectImage, selectedImage }) => {
   useEffect(() => {
@@ -13,6 +14,7 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
   const [value, setValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [imagesPerPage] = useState(20);
+  const [showModal, setShowModal] = useState(false);
 
   const indexOfLastImage = currentPage * imagesPerPage;
   const indexOfFirstImage = indexOfLastImage - imagesPerPage;
@@ -27,11 +29,27 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
 
   const handleImageSelect = photo => {
     selectImage(photo);
+    setShowModal(true);
   };
 
-  console.log("%c selectedImage", "background: red", selectedImage);
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const renderModal = () => {
+    const { farm, server, id, secret } = selectedImage;
+    return (
+      <Modal onDismiss={closeModal}>
+        <img
+          src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
+        />
+      </Modal>
+    );
+  };
+
   return (
     <div className="wrapper">
+      {showModal && renderModal(images)}
       <Pagination
         imagesPerPage={imagesPerPage}
         totalPosts={images && images.length}
@@ -56,7 +74,8 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
 };
 
 const mapStateToProps = state => ({
-  images: state.images.data.photo
+  images: state.images.data.photo,
+  selectedImage: state.images.selected
 });
 
 export default connect(mapStateToProps, { searchImages, selectImage })(App);
