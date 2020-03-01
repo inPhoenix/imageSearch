@@ -12,7 +12,6 @@ const Modal = ({ onDismiss, children }) => {
 
   return ReactDOM.createPortal(
     <div className="portal" onClick={onDismiss}>
-      <div className="close-modal">Press Esc To close</div>
       {children}
     </div>,
     document.querySelector("#portal")
