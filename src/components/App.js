@@ -6,7 +6,14 @@ import Pagination from "./Pagination";
 import Images from "./Images";
 import Modal from "./Modal";
 
-const App = ({ images, searchImages, selectImage, selectedImage }) => {
+const App = ({
+  images,
+  searchImages,
+  selectImage,
+  selectedImage,
+  isLoading,
+  error
+}) => {
   useEffect(() => {
     searchImages("landscapes");
   }, [searchImages]);
@@ -71,6 +78,8 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
         />
       </div>
       <div className="item">
+        {isLoading && <> Loading... </>}
+        {error && <> {error} </>}
         {images && (
           <Images images={currentImage} onImageSelect={handleImageSelect} />
         )}
@@ -82,7 +91,9 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
 const mapStateToProps = state => {
   return {
     images: state.images.data.photo,
-    selectedImage: state.images.selected
+    selectedImage: state.images.selected,
+    isLoading: state.images.isLoading,
+    error: state.images.error
   };
 };
 
