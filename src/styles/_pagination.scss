@@ -1,4 +1,5 @@
 $pagination-color: #2f3a90;
+$pagination-selected: #333590;
 
 .page-container {
   display: flex;
@@ -15,10 +16,15 @@ $pagination-color: #2f3a90;
   justify-content: center;
   padding: 10px;
   min-width: 15px;
-  &:hover {
-    background-color: lightgoldenrodyellow;
+  &.selected {
+    background-color: $pagination-selected;
+    color: white;
   }
   &:last-child {
     border-right: 1px solid $pagination-color;
+  }
+  &:hover {
+    background-color: #6788e2;
+    color: white;
   }
 }

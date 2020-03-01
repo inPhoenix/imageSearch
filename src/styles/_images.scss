@@ -1,6 +1,10 @@
 .images {
   width: 10vw;
   height: 10vh;
+  &:hover {
+    opacity: 0.7;
+    box-shadow: 6px 6px 4px #888888;
+  }
 }
 
 .item {
