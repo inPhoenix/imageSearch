@@ -21,7 +21,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         data: {
           ...action.payload
-        }
+        },
+        error: ''
       };
     case IMAGE_SELECTED:
       return {
