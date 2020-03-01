@@ -3,13 +3,14 @@ import { array, func } from "prop-types";
 
 const Images = ({ images, onImageSelect }) => {
   return images.map(image => {
-    const { farm, server, secret, id } = image;
+    const { farm, server, secret, id, title } = image;
 
     return (
       <div onClick={() => onImageSelect(image)} key={id}>
         <img
           src={`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`}
           alt="searched"
+          title={title}
           className="images"
         />
       </div>

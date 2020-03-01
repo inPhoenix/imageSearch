@@ -19,7 +19,7 @@ const Pagination = ({ imagesPerPage, totalPosts, paginate }) => {
 
   return (
     <nav>
-      <ul className="page-container">
+      <ul className="pagination-container">
         {pageNumbers.map(number => (
           <li
             key={number}
