@@ -62,7 +62,7 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
           value={value}
           onChange={handleChange}
           className="input"
-          placeholder="photos"
+          placeholder="search"
         />
       </div>
       <div className="item">
