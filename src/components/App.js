@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { searchImages, selectImage } from "../actions";
+import debounce from "../utils/debounce";
 import Pagination from "./Pagination";
 import Images from "./Images";
 import Modal from "./Modal";
@@ -10,6 +10,11 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
   useEffect(() => {
     searchImages("landscapes");
   }, [searchImages]);
+
+  const delayedSearch = useCallback(
+    debounce(q => searchImages(q), 300),
+    []
+  );
 
   const [value, setValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +29,7 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
 
   const handleChange = event => {
     setValue(event.target.value);
-    searchImages(event.target.value);
+    delayedSearch(event.target.value);
   };
 
   const handleImageSelect = photo => {
@@ -74,9 +79,11 @@ const App = ({ images, searchImages, selectImage, selectedImage }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  images: state.images.data.photo,
-  selectedImage: state.images.selected
-});
+const mapStateToProps = state => {
+  return {
+    images: state.images.data.photo,
+    selectedImage: state.images.selected
+  };
+};
 
 export default connect(mapStateToProps, { searchImages, selectImage })(App);
