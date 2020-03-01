@@ -5,6 +5,7 @@ import debounce from "../utils/debounce";
 import Pagination from "./Pagination";
 import Images from "./Images";
 import Modal from "./Modal";
+import Header from "./Header";
 
 const App = ({
   images,
@@ -62,6 +63,7 @@ const App = ({
 
   return (
     <div className="wrapper">
+      <Header />
       {showModal && renderModal(images)}
       <Pagination
         imagesPerPage={imagesPerPage}

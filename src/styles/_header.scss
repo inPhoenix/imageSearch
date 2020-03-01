@@ -1,0 +1,15 @@
+.header {
+  height: 30px;
+  background: #16212c;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
+.link {
+  align-self: flex-end;
+  padding: 5px 30px;
+  align-items: center;
+  color: deeppink;
+}
