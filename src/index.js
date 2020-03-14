@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import reduxThunk from "redux-thunk";
 import { applyMiddleware, compose, createStore } from "redux";
+import reducers from "./redux/reducers";
 
-import App from "./components/App";
-import reducers from "./reducers";
+import ThemedApp from "./components/ThemedApp";
 
 import "./index.scss";
 
@@ -18,7 +18,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ThemedApp />
   </Provider>,
   document.getElementById("root")
 );

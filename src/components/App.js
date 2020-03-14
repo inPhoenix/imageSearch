@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { searchImages, selectImage } from "../actions";
+import { changeTheme, searchImages, selectImage } from "../redux/actions";
 import debounce from "../utils/debounce";
 import Pagination from "./Pagination";
 import Images from "./Images";
@@ -13,7 +13,8 @@ const App = ({
   selectImage,
   selectedImage,
   isLoading,
-  error
+  error,
+  changeTheme
 }) => {
   useEffect(() => {
     searchImages("landscapes");
@@ -63,7 +64,7 @@ const App = ({
 
   return (
     <div className="wrapper">
-      <Header />
+      <Header changeTheme={changeTheme} />
       {showModal && renderModal(images)}
       <Pagination
         imagesPerPage={imagesPerPage}
@@ -99,4 +100,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { searchImages, selectImage })(App);
+export default connect(mapStateToProps, {
+  searchImages,
+  selectImage,
+  changeTheme
+})(App);

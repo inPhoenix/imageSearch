@@ -4,15 +4,7 @@ import {
   IS_LOADING,
   ADD_ERROR
 } from "../actions/types";
-
-const INITIAL_STATE = {
-  selected: "",
-  isLoading: false,
-  error: "",
-  data: {
-    photo: []
-  }
-};
+import { INITIAL_STATE } from "./initialState";
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -22,7 +14,7 @@ export default (state = INITIAL_STATE, action) => {
         data: {
           ...action.payload
         },
-        error: ''
+        error: ""
       };
     case IMAGE_SELECTED:
       return {

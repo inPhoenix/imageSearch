@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Header = () => {
+const Header = ({ changeTheme }) => {
+  const [checked, setChecked] = useState(false);
+  const handleChange = () => {
+    setChecked(!checked);
+    changeTheme(checked ? "light" : "dark");
+  };
   return (
     <header className="header">
       <a
@@ -11,6 +16,19 @@ const Header = () => {
       >
         GitHub
       </a>
+      <div className="theme-switch-wrapper">
+        <em>Light</em>
+        <label className="theme-switch" htmlFor="checkbox">
+          <input
+            type="checkbox"
+            id="checkbox"
+            onChange={handleChange}
+            checked={checked}
+          />
+          <div className="slider round"></div>
+        </label>
+        <em>Dark</em>
+      </div>
     </header>
   );
 };

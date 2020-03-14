@@ -1,6 +1,12 @@
-import { FETCH_IMAGES, IMAGE_SELECTED, IS_LOADING, ADD_ERROR } from "./types";
-import { API_KEY } from "../secrets";
-import flickr from "../apis/flickr";
+import {
+  FETCH_IMAGES,
+  IMAGE_SELECTED,
+  IS_LOADING,
+  ADD_ERROR,
+  CHANGE_THEME
+} from "./types";
+import { API_KEY } from "../../secrets";
+import flickr from "../../apis/flickr";
 
 export const searchImages = searchTerm => async dispatch => {
   const endpoint = `?method=flickr.photos.search&text=${searchTerm}&api_key=${API_KEY}&format=json&nojsoncallback=1`;
@@ -32,4 +38,8 @@ export const selectImage = image => ({
 
 const setLoading = state => {
   return { type: IS_LOADING, status: state };
+};
+
+export const changeTheme = state => {
+  return { type: CHANGE_THEME, payload: state };
 };
