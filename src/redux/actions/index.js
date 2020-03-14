@@ -9,7 +9,8 @@ import { API_KEY } from "../../secrets";
 import flickr from "../../apis/flickr";
 
 export const searchImages = searchTerm => async dispatch => {
-  const endpoint = `?method=flickr.photos.search&text=${searchTerm}&api_key=${API_KEY}&format=json&nojsoncallback=1`;
+  const params = "&format=json&nojsoncallback=1&sort=interestingness-desc";
+  const endpoint = `?method=flickr.photos.search&text=${searchTerm}&api_key=${API_KEY}${params}`;
   try {
     dispatch(setLoading(true));
     const response = await flickr.get(endpoint);
