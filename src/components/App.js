@@ -71,7 +71,6 @@ const App = ({
         totalPosts={images && images.length}
         paginate={paginate}
       />
-
       <div className="input-container">
         <input
           value={value}

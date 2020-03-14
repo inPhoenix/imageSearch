@@ -7,9 +7,8 @@ import { changeTheme } from "../redux/actions";
 const GlobalStyle = createGlobalStyle`
   body {
     color: ${props => (props.theme.bg === "light" ? "#2f3a90" : "#6788e2")};
-    background: ${props => (props.theme.bg === "light" ? "azure" : "black")};
+    background: ${props => (props.theme.bg === "light" ? "azure" : "#1c222b")};
     box-sizing: border-box;
-   
     font-family: "American Typewriter", Helvetica;
   }`;
 
