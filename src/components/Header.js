@@ -9,7 +9,7 @@ const Header = ({ changeTheme }) => {
       : null;
     changeTheme(currentTheme === "dark" ? "dark" : "light");
     setChecked(currentTheme === "dark" ? true : false);
-  }, []);
+  }, [changeTheme]);
 
   const handleChange = () => {
     setChecked(!checked);
