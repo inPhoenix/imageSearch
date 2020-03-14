@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Header = ({ changeTheme }) => {
   const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    const currentTheme = localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : null;
+    changeTheme(currentTheme === "dark" ? "dark" : "light");
+    setChecked(currentTheme === "dark" ? true : false);
+  }, []);
+
   const handleChange = () => {
     setChecked(!checked);
     changeTheme(checked ? "light" : "dark");
+    localStorage.setItem("theme", checked ? "light" : "dark");
   };
   return (
     <header className="header">
